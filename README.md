@@ -25,10 +25,4 @@ https://github.com/JacquiM/CMPG-323-IOT-Device-Management.git
 * [Pro Git](https://git-scm.com/book/en/v2)
 * [Dev Docs](https://devdocs.io)
 
-## Please take note!<br />
-Continuous commits had been done on the repository that I had forked. After completing my project on my development branch and merging with main branch, I realised that I shouldve copied the project to my own repository. I have now done this and will share screenshots to show the Initial commit on my forked repository along with the link to this repository just as proof that I had been working on this project for some time and did not rush to finish.  <br />
-Forked Repo link: https://github.com/MarcoMurphy2000/CMPG-323-Project-3-35314389.git <br />
-New repo link: https://github.com/MarcoMurphy2000/CMPG-323-Project-3---35314389-.git <br />
-I have added the he users autoruby, JacquiM and marijkec as contributers to both these repos. <br /> <br />
-Screenshot: 
-![image](https://user-images.githubusercontent.com/53267265/192135985-d304e5f3-1b09-4bd9-8455-750956ea4926.png)
+
