@@ -1,7 +1,8 @@
 # CMPG-323-Project-3---35314389
 Implementing Repository Pattern for an existing ASP.NET Core MVC Web Application provided as part of Project 3 - CMPG 323 <br />
 ## How to Install and Run the Project
-Plese find this project published on Azure using this link:  <br />
+Please find my project (DeviceManagementWebApp) published on Azure using this link: https://devicemanagementwebapp.azurewebsites.net <br />
+
 
 My repository forked from JacquiM: https://github.com/MarcoMurphy2000/CMPG-323-Project-3-35314389.git <br />
 
