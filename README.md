@@ -11,10 +11,11 @@ As instructed in the project brief, I have forked the repository from JacquiM/CM
 (For markers) To successfully run this project from my github repository, please add the appsettings.json file provided to all students in the "Application of Design Patterns" slide on efundi. This appsettings.json file contains the connection string and I have excluded the file during my commit to my repository for security purpouses.  <br />
 
 ## How to Use the Project
-After running the project, you can register by clicking on the register button. Prompts will be given to help create a secure password. <br />
-After registering you should be logged in seing the home, Zones, Categories, Devices, and Logout buttons. <br />
-After clicking on one of the 3 controllers (either Zones, Categories, or Devices) you should see all existing records.<br />
+After running the project or opening the link to the project hosted on Azure, you can register by clicking on the register button. You will be prompted to register with your email and a strong password. You can also choose weather or not to be remembered to make the logging in prcocess much quicker. <br />
+After registering you should automatically be logged. From this page you will see the home, Zones, Categories, Devices, and Logout buttons. <br />
+After clicking on one of the 3 controller buttons (either Zones, Categories, or Devices) you will see all existing records for that controller.<br />
 From this page you can either edit an existing record, get a record by id or delete a record. <br />
+Pressing the home button wil return you to the page where all buttons are available and you can log out anytime by pressing the logout button. <br />
 
 ## Credits
 https://github.com/JacquiM/CMPG-323-IOT-Device-Management.git
