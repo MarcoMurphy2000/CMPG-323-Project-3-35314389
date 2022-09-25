@@ -6,7 +6,8 @@ Please find my project (DeviceManagementWebApp) published on Azure using this li
 
 My repository forked from JacquiM: https://github.com/MarcoMurphy2000/CMPG-323-Project-3-35314389.git <br />
 
-As instructed in the project brief, I have forked the repository from JacquiM/CMPG-323-IOT-Device-Managementand. I then cloned this repositoty to my local machine, created a development branch and regularly commited my work for source control. <br /><br />
+As instructed in the project brief, I have forked the repository from JacquiM/CMPG-323-IOT-Device-Managementand. <br />
+I then cloned this repositoty to my local machine, created a development branch and regularly commited my work for source control. <br /><br />
 
 (For markers) To successfully run this project from my github repository, please add the appsettings.json file provided to all students in the "Application of Design Patterns" slide on efundi. This appsettings.json file contains the connection string and I have excluded the file during my commit to my repository for security purpouses.  <br />
 
