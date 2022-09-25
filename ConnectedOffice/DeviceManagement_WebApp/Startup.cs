@@ -39,7 +39,7 @@ namespace DeviceManagement_WebApp
             services.AddControllersWithViews();
             services.AddRazorPages();
 
-
+            //Dependency Injection 
             services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddTransient<ICategoryRepository, CategoryRepository>();
 
