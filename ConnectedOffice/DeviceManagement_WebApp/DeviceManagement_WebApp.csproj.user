@@ -15,5 +15,6 @@
     <WebStackScaffolding_DbContextTypeFullName>DeviceManagement_WebApp.Data.ConnectedOfficeContext</WebStackScaffolding_DbContextTypeFullName>
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
     <WebStackScaffolding_IsViewGenerationSelected>True</WebStackScaffolding_IsViewGenerationSelected>
+    <NameOfLastUsedPublishProfile>C:\Users\Marco\Source\Repos\CMPG-323-Project-3-35314389\ConnectedOffice\DeviceManagement_WebApp\Properties\PublishProfiles\DeviceManagementWebApp - Web Deploy.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>
