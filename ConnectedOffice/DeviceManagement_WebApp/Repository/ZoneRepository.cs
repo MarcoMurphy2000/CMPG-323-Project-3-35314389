@@ -1,6 +1,11 @@
 ﻿using DeviceManagement_WebApp.Data;
 using DeviceManagement_WebApp.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace DeviceManagement_WebApp.Repository
 {
@@ -16,5 +21,4 @@ namespace DeviceManagement_WebApp.Repository
             return _context.Zone.OrderByDescending(zone => zone.DateCreated).FirstOrDefault();
         }
     }
-
 }

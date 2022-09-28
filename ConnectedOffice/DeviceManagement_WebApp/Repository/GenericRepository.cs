@@ -4,6 +4,7 @@ using System;
 using DeviceManagement_WebApp.Data;
 using System.Linq;
 
+
 namespace DeviceManagement_WebApp.Repository
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
@@ -29,7 +30,7 @@ namespace DeviceManagement_WebApp.Repository
         {
             return _context.Set<T>().ToList();
         }
-        public T GetById(int id)
+        public T GetById(Guid id)
         {
             return _context.Set<T>().Find(id);
         }

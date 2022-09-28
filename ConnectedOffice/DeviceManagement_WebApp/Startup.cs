@@ -9,7 +9,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.ProjectModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,15 +39,12 @@ namespace DeviceManagement_WebApp
             services.AddControllersWithViews();
             services.AddRazorPages();
 
-
-            //Dependency Injections
+            //Dependency Injection 
             services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+
+
             services.AddTransient<ICategoryRepository, CategoryRepository>();
-
-            services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddTransient<IZoneRepository, ZoneRepository>();
-
-            services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddTransient<IDeviceRepository, DeviceRepository>();
         }
 

@@ -8,38 +8,39 @@ using Microsoft.EntityFrameworkCore;
 using DeviceManagement_WebApp.Data;
 using DeviceManagement_WebApp.Models;
 using DeviceManagement_WebApp.Repository;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DeviceManagement_WebApp.Controllers
 {
+    [Authorize]
     public class DevicesController : Controller
     {
-        private readonly ConnectedOfficeContext _context;
         private readonly IDeviceRepository _deviceRepository;
+        private readonly ICategoryRepository _categoryRepository;
+        private readonly IZoneRepository _zoneRepository;
 
-        public DevicesController(ConnectedOfficeContext context, IDeviceRepository deviceRepository)
+        public DevicesController(IDeviceRepository deviceRepository, ICategoryRepository categoryRepository, IZoneRepository zoneRepository)
         {
-            _context = context;
             _deviceRepository = deviceRepository;
+            _categoryRepository = categoryRepository;
+            _zoneRepository = zoneRepository;
         }
 
-        // GET: Devices
+        // GET Devices
         public async Task<IActionResult> Index()
         {
             return View(_deviceRepository.GetAll());
         }
 
-        // GET: Devices/Details/5
-        public async Task<IActionResult> Details(Guid? id)
+        // GET device details
+        public async Task<IActionResult> Details(Guid id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var device = await _context.Device
-                .Include(d => d.Category)
-                .Include(d => d.Zone)
-                .FirstOrDefaultAsync(m => m.DeviceId == id);
+            var device = _deviceRepository.GetById(id);
             if (device == null)
             {
                 return NotFound();
@@ -48,50 +49,47 @@ namespace DeviceManagement_WebApp.Controllers
             return View(device);
         }
 
-        // GET: Devices/Create
+        // GET part of create
         public IActionResult Create()
         {
-            ViewData["CategoryId"] = new SelectList(_context.Category, "CategoryId", "CategoryName");
-            ViewData["ZoneId"] = new SelectList(_context.Zone, "ZoneId", "ZoneName");
+            ViewData["CategoryId"] = new SelectList(_categoryRepository.GetAll(), "CategoryId", "CategoryName");
+            ViewData["ZoneId"] = new SelectList(_zoneRepository.GetAll(), "ZoneId", "ZoneName");
             return View();
         }
-
         // POST: Devices/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST part of create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("DeviceId,DeviceName,CategoryId,ZoneId,Status,IsActive,DateCreated")] Device device)
         {
             device.DeviceId = Guid.NewGuid();
-            _context.Add(device);
-            await _context.SaveChangesAsync();
+            _deviceRepository.Add(device);
+            _deviceRepository.Save();
             return RedirectToAction(nameof(Index));
 
 
         }
 
-        // GET: Devices/Edit/5
-        public async Task<IActionResult> Edit(Guid? id)
+        // GET part of edit
+        public async Task<IActionResult> Edit(Guid id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var device = await _context.Device.FindAsync(id);
+            var device = _deviceRepository.GetById(id);
             if (device == null)
             {
                 return NotFound();
             }
-            ViewData["CategoryId"] = new SelectList(_context.Category, "CategoryId", "CategoryName", device.CategoryId);
-            ViewData["ZoneId"] = new SelectList(_context.Zone, "ZoneId", "ZoneName", device.ZoneId);
+            ViewData["CategoryId"] = new SelectList(_categoryRepository.GetAll(), "CategoryId", "CategoryName", device.CategoryId);
+            ViewData["ZoneId"] = new SelectList(_zoneRepository.GetAll(), "ZoneId", "ZoneName", device.ZoneId);
             return View(device);
         }
 
         // POST: Devices/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST part of edit
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, [Bind("DeviceId,DeviceName,CategoryId,ZoneId,Status,IsActive,DateCreated")] Device device)
@@ -102,8 +100,8 @@ namespace DeviceManagement_WebApp.Controllers
             }
             try
             {
-                _context.Update(device);
-                await _context.SaveChangesAsync();
+                _deviceRepository.Update(device);
+                _deviceRepository.Save();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -120,18 +118,15 @@ namespace DeviceManagement_WebApp.Controllers
 
         }
 
-        // GET: Devices/Delete/5
-        public async Task<IActionResult> Delete(Guid? id)
+        // GET part of delete
+        public async Task<IActionResult> Delete(Guid id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var device = await _context.Device
-                .Include(d => d.Category)
-                .Include(d => d.Zone)
-                .FirstOrDefaultAsync(m => m.DeviceId == id);
+            var device = _deviceRepository.GetById(id);
             if (device == null)
             {
                 return NotFound();
@@ -140,20 +135,30 @@ namespace DeviceManagement_WebApp.Controllers
             return View(device);
         }
 
-        // POST: Devices/Delete/5
+        // POST part of delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var device = await _context.Device.FindAsync(id);
-            _context.Device.Remove(device);
-            await _context.SaveChangesAsync();
+            var device = _deviceRepository.GetById(id);
+            _deviceRepository.Remove(device);
+            _deviceRepository.Save();
             return RedirectToAction(nameof(Index));
         }
 
+        //Checks if device record exists
         private bool DeviceExists(Guid id)
         {
-            return _context.Device.Any(e => e.DeviceId == id);
+            Device device = _deviceRepository.GetById(id);
+
+            if(device != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
